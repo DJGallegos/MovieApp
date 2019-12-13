@@ -1,0 +1,110 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.example.movieapppractice"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha05'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    //ViewModel and LiveData
+    //view handles what the user sees and touches on the screen
+    //The view is basically an activity or a fragment
+    //but in the view we dont put any business logic
+    //can only display stuff on the screen that it gets from the view model
+
+
+    //ViewModel
+    //provides data for the view by getting it from the repository
+    //the viewModel doesnt know which views are using it
+    //what viewModel does is make the the appropriate data in viewModel
+    //Observable
+    //LiveData we can observe live data when any changes happen to it
+    //LiveData inside of viewModel
+    //The view just observes live data
+    //so when the data in LiveData changes the view will be notified
+    //the state of the data is kept in the viewModel
+    //Model
+    //there is a repository between the viewModel and the Model
+    //the repository fetches data from the local db or from the network
+    //the repository is a mediator between the local storage and the server
+    //this is where we check if the remote data should be cached locally
+    //and what to do with the data so when the viewModel wants some data
+    //it gets from the respository
+    //then its up to the repository to decide what data it should make available
+    //to the viewModel
+
+    //Connectedness and the flow of data
+    //the view of the data in the view model and
+    //the viewModel observes data in the repository
+    //the repository observes data from the local database and from the remote data source
+    // see the diagram on video one min 2:53
+    //the view has a direct reference to the view model
+    //the viewModel has direct reference to the Repository
+    //the repository has a direct reference to the local and storage or the web service
+    //the child doesnt have a direcet reference to the parent
+    //children only expose some data by allowing it to be
+    //observed through live data
+
+    //
+    //Retrofit is used to make network
+    //adapter rxjava is also used to make network calls
+    //Gson for converting Json files from api call
+    //glide for showing images paging for pagination
+    //rx java and rx java
+
+
+
+
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+
+    //RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.5.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.5.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.5.0"
+
+    //Gson
+    implementation "com.google.code.gson:gson:2.8.5"
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+
+    //paging
+    implementation "androidx.paging:paging-runtime:2.1.0"
+
+    //Rx
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.7'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+
+}
